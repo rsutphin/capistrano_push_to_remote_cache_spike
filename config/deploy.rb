@@ -12,6 +12,9 @@ VAGRANT_SERVER="192.168.36.36"
 role :web, VAGRANT_SERVER                          # Your HTTP server, Apache/etc
 role :app, VAGRANT_SERVER                          # This may be the same as your `Web` server
 
+# Just because this project has no assets
+set :normalize_asset_timestamps, false
+
 # if you want to clean up old releases on each deploy uncomment this:
 # after "deploy:restart", "deploy:cleanup"
 
