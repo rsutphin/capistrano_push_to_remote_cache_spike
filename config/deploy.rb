@@ -4,11 +4,9 @@ set :ssh_options, { keys: ['.vagrant/machines/default/virtualbox/private_key'] }
 set :deploy_to, '/home/vagrant/apps/hello'
 set :use_sudo, false
 
-# TODO
-# set :repository,  "set your repository location here"
-
-# set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
+set :scm, :git
+set :repository,  "."
+set :deploy_via, :copy
 
 VAGRANT_SERVER="192.168.36.36"
 role :web, VAGRANT_SERVER                          # Your HTTP server, Apache/etc
