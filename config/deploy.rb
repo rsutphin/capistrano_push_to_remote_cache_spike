@@ -1,3 +1,6 @@
+# Capistrano insists on loading strategy plugins itself from particular filenames
+$LOAD_PATH << File.expand_path('../../lib', __FILE__)
+
 set :application, "hello"
 set :user, 'vagrant'
 set :ssh_options, { keys: ['.vagrant/machines/default/virtualbox/private_key'] }
@@ -5,8 +8,10 @@ set :deploy_to, '/home/vagrant/apps/hello'
 set :use_sudo, false
 
 set :scm, :git
-set :repository,  "."
-set :deploy_via, :copy
+set :deploy_via, :push_to_remote_cache
+set :local_repository, '.'
+set :repository,  File.join(shared_path, 'push-repo')
+set :branch, :master
 
 VAGRANT_SERVER="192.168.36.36"
 role :web, VAGRANT_SERVER                          # Your HTTP server, Apache/etc
