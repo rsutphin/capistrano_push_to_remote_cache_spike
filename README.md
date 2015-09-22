@@ -4,8 +4,12 @@ This repo contains a trivial Rails app that demos a git-specific Capistrano
 deployment strategy called `:push_to_remote_cache`. The implementation here is
 for Capistrano 2.
 
-The motivation is to ensure that an application is always deployable, even if
-the service hosting the application's git repo is not available.
+The purpose is to ensure that an application is always deployable, even if the
+service hosting the application's git repo is not available.
+
+Capistrano's `:copy` strategy can do this, at the cost of re-copying the entire
+codebase from the local machine to the server on every deploy. This strategy
+use `git` to only push what has changed.
 
 ## See it in action
 
