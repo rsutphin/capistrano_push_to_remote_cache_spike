@@ -5,4 +5,4 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.4'
 
 # Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+gem 'capistrano', '~> 2.5', group: :development
