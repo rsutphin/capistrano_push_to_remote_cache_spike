@@ -9,7 +9,7 @@ service hosting the application's git repo is not available.
 
 Capistrano's `:copy` strategy can do this, at the cost of re-copying the entire
 codebase from the local machine to the server on every deploy. This strategy
-use `git` to only push what has changed.
+takes advantage of git to only transfer what has changed.
 
 ## See it in action
 
@@ -47,8 +47,8 @@ get the code onto the Vagrant VM. You can inspect the results:
 
 The interesting files are
 
-* `/lib/capistrano/recipes/deploy/strategy/push_to_remote_cache.rb`
-* `/config/deploy.rb`
+* `lib/capistrano/recipes/deploy/strategy/push_to_remote_cache.rb`
+* `config/deploy.rb`
 
 ## Future work
 
