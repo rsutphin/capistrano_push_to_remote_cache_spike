@@ -1,3 +1,6 @@
 [submodule "vendor/globalid"]
 	path = vendor/globalid
 	url = https://github.com/rails/globalid.git
+[submodule "patts"]
+	path = vendor/protected_atts
+	url = https://github.com/rails/protected_attributes.git
