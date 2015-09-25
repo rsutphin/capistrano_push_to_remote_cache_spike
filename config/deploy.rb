@@ -8,9 +8,9 @@ set :deploy_to, '/home/vagrant/apps/hello'
 set :use_sudo, false
 
 set :scm, :git
-set :deploy_via, :push_to_remote_cache
+set :deploy_via, :remote_cache_from_local
 set :local_repository, '.'
-set :repository,  File.join(shared_path, 'push-repo')
+set :repository, 'git://127.0.0.1:50123/.git'
 set :branch, :master
 
 VAGRANT_SERVER="192.168.36.36"
