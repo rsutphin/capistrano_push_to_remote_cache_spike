@@ -1,0 +1,3 @@
+[submodule "vendor/globalid"]
+	path = vendor/globalid
+	url = https://github.com/rails/globalid.git
