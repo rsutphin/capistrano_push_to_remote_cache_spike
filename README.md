@@ -15,6 +15,10 @@ takes advantage of git to only transfer what has changed.
 
 Prereqs for the demo: [Vagrant](https://www.vagrantup.com/), VirtualBox, Ruby, Bundler.
 
+The Vagrant VM is configured so that, once it has been provisioned, it cannot
+make network connections out, other than for DNS, communications with Vagrant
+itself, and connecting to localhost.
+
 ### Set up the app and deployment environment
 
 * Clone this repo & `cd` into its directory
@@ -31,8 +35,9 @@ tunnel (git://127.0.0.1:50123/.git) to get the code onto the Vagrant VM. You can
 inspect the results:
 
 * `$ vagrant ssh`
-* `vagrant@precise64:~$ ls -al apps/hello`
-* `vagrant@precise64:~$ ls -al apps/hello/current`
+* `vagrant@precise64:~$ ls -al apps/hello/shared/cached-copy` (the cloned repo)
+* `vagrant@precise64:~$ ls -al apps/hello/current` (the deployed application)
+* `vagrant@precise64:~$ ls -al apps/hello/current/vendor/globalid` (a submodule)
 
 ## How it works
 
@@ -44,21 +49,18 @@ inspect the results:
   on Capistrano's SSH connection
 * Hands the deploying off to Capistrano's built-in `:remote_cache` strategy to
   clone or fetch across the ssh tunnel.
+* Reconfigures any git submodules so that they also fetch across the tunnel.
 
 The interesting files are
 
 * `lib/capistrano/recipes/deploy/strategy/remote_cache_from_local.rb`
+* `lib/capistrano/recipes/deploy/scm/git_local.rb`
 * `config/deploy.rb`
 
 ## Future work
 
 This is just a spike, so there are some features missing.
 
-* git submodules. It should be possible to use a similar strategy to pull
-  submodules — the reason for the separation between the `git submodule init`
-  and `git submodule update` commands is to allow rewriting of the submodules'
-  remote URLs. It should be possible to take advantage of this to handle
-  submodules also.
 * More robust handling of the temporary daemon.
   * While an attempt is made to kill the temporary daemon if the
     deployment is interrupted, it is possible that it could stick around. When
