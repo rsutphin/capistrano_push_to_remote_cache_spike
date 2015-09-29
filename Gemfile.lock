@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/cdd/capistrano2-remote_cache_from_local.git
+  revision: 27a1862e406fc3c1de0cf816265c09c9a8210b84
+  branch: master
+  specs:
+    capistrano2-remote_cache_from_local (0.1.0.pre)
+      capistrano (~> 2.5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -110,6 +118,7 @@ PLATFORMS
 
 DEPENDENCIES
   capistrano (~> 2.5)
+  capistrano2-remote_cache_from_local!
   rails (= 4.2.4)
 
 BUNDLED WITH

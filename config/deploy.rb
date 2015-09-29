@@ -1,5 +1,4 @@
-# Capistrano insists on loading strategy plugins itself from particular filenames
-$LOAD_PATH << File.expand_path('../../lib', __FILE__)
+require 'capistrano/remote_cache_from_local'
 
 set :application, "hello"
 set :user, 'vagrant'
@@ -7,14 +6,9 @@ set :ssh_options, { keys: ['.vagrant/machines/default/virtualbox/private_key'] }
 set :deploy_to, '/home/vagrant/apps/hello'
 set :use_sudo, false
 
-set :scm, :git_local
-set :deploy_via, :remote_cache_from_local
-set :local_repository, '.'
-set :repository, 'git://127.0.0.1:50123/.git'
-set :branch, :master
 set :scm_verbose, true
 
-# N.b.: the default git SCM submodule support must be disabled.
+# # N.b.: the default git SCM submodule support must be disabled.
 set :git_enable_submodules, false
 set :git_local_enable_submodules, true
 

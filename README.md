@@ -4,6 +4,8 @@ This repo contains a trivial Rails app that demos a git-specific Capistrano
 deployment strategy called `:remote_cache_from_local`. The implementation here
 is for Capistrano 2.
 
+The strategy is available as a gem called [`capistrano2-remote_cache_from_local`](https://github.com/cdd/capistrano2-remote_cache_from_local).
+
 The purpose is to ensure that an application is always deployable, even if the
 service hosting the application's git repo is not available.
 
@@ -50,24 +52,3 @@ inspect the results:
 * Hands the deploying off to Capistrano's built-in `:remote_cache` strategy to
   clone or fetch across the ssh tunnel.
 * Reconfigures any git submodules so that they also fetch across the tunnel.
-
-The interesting files are
-
-* `lib/capistrano/recipes/deploy/strategy/remote_cache_from_local.rb`
-* `lib/capistrano/recipes/deploy/scm/git_local.rb`
-* `config/deploy.rb`
-
-## Future work
-
-This is just a spike, so there are some features missing.
-
-* More robust handling of the temporary daemon.
-  * While an attempt is made to kill the temporary daemon if the
-    deployment is interrupted, it is possible that it could stick around. When
-    that happens, you have to kill it manually.
-  * The local and remote ports used for the daemon are hard-coded.
-* There are no defaults for the variables the strategy depends on. The
-  `:repository` in particular must have a specific value in order for the
-  strategy to work at all.
-* Automated tests.
-* Capistrano 3 support.

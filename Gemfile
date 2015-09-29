@@ -5,4 +5,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.4'
 
 # Use Capistrano for deployment
-gem 'capistrano', '~> 2.5', group: :development
+group :deployment do
+  gem 'capistrano', '~> 2.5'
+  gem 'capistrano2-remote_cache_from_local', require: false, github: 'cdd/capistrano2-remote_cache_from_local', branch: :master
+end
