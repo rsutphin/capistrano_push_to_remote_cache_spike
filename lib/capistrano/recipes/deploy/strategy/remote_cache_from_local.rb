@@ -31,7 +31,7 @@ module Capistrano::Deploy::Strategy
             daemon_port = 50123
             pid_file = "tmp/git-daemon.pid"
             execute "Run local git daemon" do
-              system "git daemon --verbose --listen=127.0.0.1 --port=#{daemon_port} --reuseaddr --enable=receive-pack --export-all --base-path=#{local_repository} --detach --pid-file=#{pid_file}"
+              system "git daemon --verbose --listen=127.0.0.1 --port=#{daemon_port} --reuseaddr --export-all --base-path=#{local_repository} --detach --pid-file=#{pid_file}"
             end
 
             # Forward remote connections to local git daemon via capistrano's SSH session
